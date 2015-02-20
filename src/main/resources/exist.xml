@@ -1,0 +1,9 @@
+<package xmlns="http://exist-db.org/ns/expath-pkg">
+  <jar>freelib-marc4j-${freelib.marc4j.version}.jar</jar>
+  <jar>freelib-utils-${freelib.utils.version}.jar</jar>
+  <jar>${project.artifactId}-${project.version}.jar</jar>
+  <java>
+    <namespace>http://freelibrary.info/xquery/marc</namespace>
+    <class>info.freelibrary.xquery.marc.MARCModule</class>
+  </java>
+</package>

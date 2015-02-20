@@ -1,0 +1,28 @@
+language: java
+
+# JDK 7 is end-of-life'd in April 2015
+jdk:
+  - openjdk7
+  - oraclejdk8
+
+# Test everything but the docs branch
+branches:
+  except:
+    - docs
+
+script: "mvn install"
+
+notifications:
+  email:
+    recipients:
+      - ksclarke@gmail.com
+    on_failure: change
+    on_success: change
+  irc:
+    channels:
+      - irc.freenode.org#freelibrary
+    on_failure: always
+    on_success: always
+
+# We don't use sudo so can take advantage of the new Docker container builds
+sudo: false

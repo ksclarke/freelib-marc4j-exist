@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://expath.org/ns/pkg" name="http://freelibrary.info/xquery/marc" abbrev="freelib-marc"
+  version="${project.version}" spec="1.0">
+  <title>MAchine Readable Cataloging Library</title>
+  <dependency processor="http://exist-db.org/" />
+</package>

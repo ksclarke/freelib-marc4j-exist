@@ -1,0 +1,9 @@
+<meta xmlns="http://exist-db.org/xquery/repo">
+  <author id="ksclarke">Kevin S. Clarke</author>
+  <website>http://github.com/ksclarke/freelib-marc4j-exist</website>
+  <license>GNU-LGPL</license>
+  <copyright>true</copyright>
+  <description>MAchine Readable Cataloging Library</description>
+  <type>library</type>  
+  <status>experimental</status>
+</meta>
