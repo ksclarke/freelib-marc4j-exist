@@ -319,6 +319,7 @@
         <configuration>
           <stopPort>${jetty.port.stop}</stopPort>
           <stopKey>${jetty.port.stop}</stopKey>
+          <stopWait>10</stopWait>
           <httpConnector>
             <port>${jetty.port}</port>
           </httpConnector>

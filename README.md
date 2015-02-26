@@ -1,6 +1,6 @@
 # FreeLib-MARC4J-eXist [![Build Status](https://travis-ci.org/ksclarke/freelib-marc4j-exist.png?branch=master)](https://travis-ci.org/ksclarke/freelib-marc4j-exist)
 
-This is an extension for [eXist-db](http://exist-db.org/) (a native XML database) that allows the reading and writing of MARC records into and out from the database. The product of the project's build is an XAR file which can be used to install the freelib-marc4j-exist code into an eXist database.  You can either build the project yourself, or install a previously built XAR file from the project's [releases page](https://github.com/ksclarke/freelib-marc4j-exist/releases).
+This is an extension for [eXist-db](http://exist-db.org/) (a native XML database) that allows the reading and writing of MARC records into and out from the database. The product of the project's build is an XAR file which can be used to install the freelib-marc4j-exist code into an eXist database.  You can either build the project yourself, or install a previously built XAR file from the project's GitHub [releases page](https://github.com/ksclarke/freelib-marc4j-exist/releases).
 
 ## Getting Started
 
@@ -116,7 +116,7 @@ If you want to write out more than one record (which you probably will), you'll 
     (: Then write them out as MARC records :)
     return marc:write($record//marcxml:record, '/tmp/marc-record.mrc')
 
-If you are interested in seeing some more examples, take a look at the tests in the project's [src/test/xqueries](https://github.com/ksclarke/freelib-marc4j-exist/tree/master/src/test/xqueries) folder.  There are multiple tests (i.e., examples) in each XQuery file. There is also an XQuery script there that demonstrates programmatically loading a XAR file.
+If you are interested in seeing some more examples, take a look at the tests in the [src/test/xqueries](https://github.com/ksclarke/freelib-marc4j-exist/tree/master/src/test/xqueries) folder.  There are multiple tests (i.e., examples) in each XQuery file. There is also an XQuery script there that demonstrates programmatically loading a XAR file.
 
 ## Building the Project
 
@@ -130,17 +130,17 @@ After you do that you should be able to find the XAR file in the project's `targ
 
 ## Installing the XAR
 
-The eXist database comes with a very nice Web-based administrative interface.  It makes installing XAR files really easy.  You just need to visit the administrative dashboard.
+The eXist database comes with a very nice Web-based administrative interface.  It makes installing XAR files really easy.  You just need to visit the administrative dashboard and select the 'Package Manager'.
 
 ![The eXist-db dashboard](https://raw.githubusercontent.com/ksclarke/freelib-marc4j-exist/master/src/site/images/exist-dashboard.png)
 
-Then select the icon in the upper left with a plus sign on it.  When you do, you'll be presented with a dialog that will allow you to upload a XAR file into the database.  Once you select 'Upload', you can navigate to the XAR file on your local file system.
+To install a new XAR, select the icon in the upper left with a plus sign on it.  When you do, you'll be presented with a dialog that will allow you to upload a XAR file into the database.  Once you've clicked the 'Upload' button, you can navigate to the XAR file on your local file system.
 
-![The eXist-db dashboard](https://raw.githubusercontent.com/ksclarke/freelib-marc4j-exist/master/src/site/images/exist-xar-upload.png)
+![Uploading a XAR file](https://raw.githubusercontent.com/ksclarke/freelib-marc4j-exist/master/src/site/images/exist-xar-upload.png)
 
 After the XAR file has been successfully uploaded, you'll then see the 'MAchine Readable Cataloging Library' as one of the installed libraries in your eXist-db dashboard.
 
-![The eXist-db dashboard](https://raw.githubusercontent.com/ksclarke/freelib-marc4j-exist/master/src/site/images/exist-installed-xar.png)
+![The installed MARC library](https://raw.githubusercontent.com/ksclarke/freelib-marc4j-exist/master/src/site/images/exist-installed-xar.png)
 
 Now, you are ready to read and write some MARC records!
 

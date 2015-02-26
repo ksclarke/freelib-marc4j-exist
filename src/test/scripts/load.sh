@@ -8,8 +8,8 @@ RESULT=$(cat target/xq/load.xq | $JAVA_HOME/bin/java -Dexist.home=$EXIST_HOME -j
 # If one of our tasks returns false, fail the build
 for LINE in "${RESULT[@]}"; do
   echo "$LINE"
-  
-  if [[ "$RESULT" == *false* ]]; then
+
+  if [[ "$LINE" == *"Installed new XAR file: false"* ]]; then
     exit 1
   fi
 done
