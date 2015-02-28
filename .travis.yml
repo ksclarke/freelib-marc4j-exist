@@ -16,7 +16,6 @@ install:
   - cd exist-eXist-2.2
   - ./build.sh
   - cd ..
-  - export PATH=$PATH:.
 
 script:
   - mvn -Dexist.home=`pwd`/exist-eXist-2.2 install
