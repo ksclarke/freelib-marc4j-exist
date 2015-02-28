@@ -14,7 +14,7 @@ declare function local:error($err-code, $err-message, $err-value) {
 
 ((: Running a series of tests: some that are supposed to pass and others that are supposed to fail :)
 try {
-  let $marc := marc:read('src/test/resources/collection.mrc')
+  let $marc := marc:read('../../../src/test/resources/collection.mrc')
   let $result := count($marc//marcxml:leader) eq 2
   return
     if ($result)
@@ -24,7 +24,7 @@ try {
   '[ERROR] An unexpected error thrown while reading MARC records: ' || local:error($err:code, $err:description, $err:value)
 },
 try {
-  let $marc := marc:read('src/test/resources/bad_leaders_10_11.mrc')
+  let $marc := marc:read('../../../src/test/resources/bad_leaders_10_11.mrc')
   let $result := count($marc//marcxml:leader) eq 2
   return
     if ($result)
@@ -34,7 +34,7 @@ try {
   '[SCRIPT] Successfully threw an exception: ' || local:error($err:code, $err:description, $err:value)
 },
 try {
-  let $result := marc:store('src/test/resources/collection.mrc', 'marc-records')
+  let $result := marc:store('../../../src/test/resources/collection.mrc', 'marc-records')
   let $leaders := collection('/db/marc-records')//marcxml:leader
   return
     if ($result and (count($leaders) = 2))

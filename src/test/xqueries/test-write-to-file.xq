@@ -19,13 +19,13 @@ declare function local:error($err-code, $err-message, $err-value) {
 ((: Running a series of tests: some that are supposed to pass and others that are supposed to fail :)
 try {
   (: First, let's try parsing a single MARCXML record :)
-  let $record := util:parse(file:read('src/test/resources/record.marc.xml'))
+  let $record := util:parse(file:read('../../../src/test/resources/record.marc.xml'))
   let $result := marc:write($record, '/tmp/record-' || local:get-timestamp() || '.mrc')
   let $result :=
     if ($result)
     then
       (: Next, let's try parsing a collection of MARCXML records; to do this, we need to pass in the record elements :)
-      let $record := util:parse(file:read('src/test/resources/collection.marc.xml'))
+      let $record := util:parse(file:read('../../../src/test/resources/collection.marc.xml'))
       let $result := marc:write($record//marcxml:record, '/tmp/collection-' || local:get-timestamp() || '.mrc')
       return $result
     else false()
@@ -38,7 +38,7 @@ try {
 },
 try {
   (: Let's try parsing an XML file that is not valid MARC :)
-  let $record := util:parse(file:read('src/test/resources/badrecord.marc.xml'))
+  let $record := util:parse(file:read('../../../src/test/resources/badrecord.marc.xml'))
   let $timestamp := local:get-timestamp()
   let $result := marc:write($record, '/tmp/badrecord-' || $timestamp || '.mrc')
   return
