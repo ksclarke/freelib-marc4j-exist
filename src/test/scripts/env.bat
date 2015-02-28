@@ -17,7 +17,7 @@ echo The EXIST_HOME variable is not set
 exit /B 1
 
 :WRONG_EXIST_HOME
-echo The value of the EXIST_HOME variable is not a real directory
+echo The value of the EXIST_HOME variable is not a real directory: %EXIST_HOME%
 exit /B 1
 
 :MISSING_EXIST_USERNAME
