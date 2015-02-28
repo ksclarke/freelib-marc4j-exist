@@ -19,7 +19,7 @@ install:
   - export PATH=$PATH:.
 
 script:
-  - mvn -Dexist.home=exist-eXist-2.2 install
+  - mvn -Dexist.home=`pwd`/exist-eXist-2.2 install
 
 notifications:
   email:
