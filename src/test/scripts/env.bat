@@ -1,0 +1,29 @@
+@echo off
+
+IF [%EXIST_HOME%] == [] GOTO MISSING_EXIST_HOME
+IF NOT EXIST %EXIST_HOME% GOTO WRONG_EXIST_HOME
+IF [%EXIST_USERNAME%] == [] GOTO MISSING_EXIST_USERNAME
+IF [%JAVA_HOME%] == [] GOTO MISSING_JAVA_HOME
+IF [%EXIST_PASSWORD%] == [] GOTO EMPTY_PASSWORD
+
+exit /B 0
+
+:EMPTY_PASSWORD
+set EXIST_PASSWORD_ARG="-P $EXIST_PASSWORD"
+exit /B 0
+
+:MISSING_EXIST_HOME
+echo The EXIST_HOME variable is not set
+exit /B 1
+
+:WRONG_EXIST_HOME
+echo The value of the EXIST_HOME variable is not a real directory
+exit /B 1
+
+:MISSING_EXIST_USERNAME
+echo The EXIST_USERNAME variable is not set
+exit /B 1
+
+:MISSING_JAVA_HOME
+echo The JAVA_HOME variable is not set
+exit /B 1

@@ -1,6 +1,6 @@
 # FreeLib-MARC4J-eXist [![Build Status](https://travis-ci.org/ksclarke/freelib-marc4j-exist.png?branch=master)](https://travis-ci.org/ksclarke/freelib-marc4j-exist)
 
-This is an extension for [eXist-db](http://exist-db.org/) (a native XML database) that allows the reading and writing of MARC records into and out from the database. The product of the project's build is an XAR file which can be used to install the freelib-marc4j-exist code into an eXist database.  You can either build the project yourself, or install a previously built XAR file from the project's GitHub [releases](https://github.com/ksclarke/freelib-marc4j-exist/releases) page.
+This is an extension for [eXist-db](http://exist-db.org/) (a native XML database) that allows the reading and writing of MARC records into and out from the database. The product of the project's build is an XAR file which can be used to install the freelib-marc4j-exist code into an eXist database.  You can either build the project yourself or install a previously built XAR file from the project's GitHub [releases](https://github.com/ksclarke/freelib-marc4j-exist/releases) page.
 
 ## Getting Started
 
@@ -16,7 +16,7 @@ Once you have installed the project's XAR file in your eXist-db, you should be a
     (: Then write them with xmldb functions or do something else with them :)
     return $marc
 
-If you have more records than will fit into memory, you may want to write them directly into a collection in the database, where you can do further work with them (moving them into other collections or doing further munging of them).  For instance:
+If you have more records than will fit into memory, you may want to write them directly into a collection in the database, where you can do further work on them (moving them into other collections or munging their data in place).  For instance:
 
     xquery version "3.0";
     
@@ -147,8 +147,6 @@ Now, you are ready to read and write some MARC records!
 ## Potential Gotchas
 
 There are not any known gotchas at this time, but since this is the first version of this library I'm sure there are some bugs (or at the very least some things that could be done better).  Please feel free to share your experiences using the library so that I can make it better.
-
-**Edit:** Oh, one gotcha... the project's build won't run yet on Windows. If you're using Windows, you can just grab the XAR file from the [releases](https://github.com/ksclarke/freelib-marc4j-exist/releases) page, and I will update the build scripts so that it builds on Windows too in the near future.
 
 ## License
 

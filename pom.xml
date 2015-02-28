@@ -361,7 +361,8 @@
               <goal>exec</goal>
             </goals>
             <configuration>
-              <executable>src/test/scripts/load.${SCRIPT_EXTENSION}</executable>
+              <executable>load.${script.extension}</executable>
+              <workingDirectory>${script.directory}</workingDirectory>
               <environmentVariables>
                 <EXIST_HOME>${exist.home}</EXIST_HOME>
                 <EXIST_USERNAME>${exist.username}</EXIST_USERNAME>
@@ -377,7 +378,8 @@
               <goal>exec</goal>
             </goals>
             <configuration>
-              <executable>src/test/scripts/test.${SCRIPT_EXTENSION}</executable>
+              <executable>test.${script.extension}</executable>
+              <workingDirectory>${script.directory}</workingDirectory>
               <environmentVariables>
                 <EXIST_HOME>${exist.home}</EXIST_HOME>
                 <EXIST_USERNAME>${exist.username}</EXIST_USERNAME>
@@ -399,7 +401,8 @@
         </os>
       </activation>
       <properties>
-        <SCRIPT_EXTENSION>bat</SCRIPT_EXTENSION>
+        <script.extension>bat</script.extension>
+        <script.directory>src\test\scripts</script.directory>
       </properties>
     </profile>
     <profile>
@@ -410,7 +413,8 @@
         </os>
       </activation>
       <properties>
-        <SCRIPT_EXTENSION>sh</SCRIPT_EXTENSION>
+        <script.extension>sh</script.extension>
+        <script.directory>src/test/scripts</script.directory>
       </properties>
     </profile>
     <profile>

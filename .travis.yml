@@ -11,8 +11,6 @@ branches:
     - docs
 
 install:
-  - wget -O maven.tar.gz "http://mirrors.ibiblio.org/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz"
-  - tar xfv maven.tar.gz
   - wget -O exist.tar.gz "https://github.com/eXist-db/exist/archive/eXist-2.2.tar.gz"
   - tar xfv exist.tar.gz
   - cd exist-eXist-2.2
@@ -20,7 +18,7 @@ install:
   - cd ..
 
 script:
-  - ./apache-maven-3.2.5/bin/mvn -Dexist.home=exist-eXist-2.2 install
+  - mvn -Dexist.home=exist-eXist-2.2 install
 
 notifications:
   email:
