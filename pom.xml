@@ -1,12 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>info.freelibrary</groupId>
+
   <artifactId>freelib-marc4j-exist</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>FreeLib-MARC4J eXist-db Module</name>
   <description>A MARC extension for the eXist database</description>
   <url>https://github.com/ksclarke/freelib-marc4j-exist</url>
+
   <licenses>
     <license>
       <name>GNU Lesser General Public License, Version 2.1</name>
@@ -14,6 +15,7 @@
       <comments>Licensed under the GNU LGPL 2.1 or later (at your option)</comments>
     </license>
   </licenses>
+
   <scm>
     <connection>scm:git:git@github.com:ksclarke/freelib-marc4j-exist.git</connection>
     <developerConnection>scm:git:git@github.com:ksclarke/freelib-marc4j-exist.git</developerConnection>
@@ -23,10 +25,7 @@
     <system>GitHub</system>
     <url>https://github.com/ksclarke/freelib-marc4j-exist/issues</url>
   </issueManagement>
-  <organization>
-    <name>FreeLibrary</name>
-    <url>http://freelibrary.info</url>
-  </organization>
+
   <developers>
     <developer>
       <email>ksclarke@gmail.com</email>
@@ -38,6 +37,7 @@
       <timezone>America/New_York</timezone>
     </developer>
   </developers>
+
   <properties>
     <!-- The below exist-db variables can be overridden via settings.xml (https://maven.apache.org/settings.html) -->
     <exist.home>/opt/exist-db</exist.home>
@@ -47,11 +47,20 @@
     <exist.password>EMPTY</exist.password>
     <!-- Version numbers of related software / libraries; you shouldn't need to change anything beneath this point -->
     <exist.db.version>2.2</exist.db.version>
-    <freelib.utils.version>0.4.5</freelib.utils.version>
+
+    <freelib.utils.version>0.5.0</freelib.utils.version>
     <freelib.marc4j.version>2.6.5</freelib.marc4j.version>
+
+    <sl4j.log4j.version>1.7.10</sl4j.log4j.version>
+    <maven.jar.plugin.version>2.5</maven.jar.plugin.version>
+    <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
+    <maven.assembly.plugin.version>2.5.3</maven.assembly.plugin.version>
+    <copy.rename.maven.plugin.version>1.0</copy.rename.maven.plugin.version>
+
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.exist-db</groupId>
@@ -83,7 +92,6 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>properties-maven-plugin</artifactId>
-        <version>1.0-alpha-2</version>
         <executions>
           <execution>
             <goals>
@@ -100,12 +108,11 @@
           </execution>
         </executions>
       </plugin>
+      <!-- We have Bash tests so don't want to disable all tests, just Surefire's Java-based test -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.18.1</version>
         <configuration>
-          <!-- We only have integration tests -->
           <skipTests>true</skipTests>
         </configuration>
       </plugin>
@@ -113,7 +120,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.10</version>
         <executions>
           <execution>
             <id>copy</id>
@@ -147,7 +153,7 @@
       <!-- This plugin creates the XAR file, comes before copy-rename-maven-plugin -->
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.5.3</version>
+        <version>${maven.assembly.plugin.version}</version>
         <configuration>
           <descriptors>
             <descriptor>src/main/assembly/xar.xml</descriptor>
@@ -170,7 +176,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.5</version>
+        <version>${maven.jar.plugin.version}</version>
         <executions>
           <execution>
             <id>build-code-jar</id>
@@ -188,7 +194,7 @@
       <plugin>
         <groupId>com.coderplus.maven.plugins</groupId>
         <artifactId>copy-rename-maven-plugin</artifactId>
-        <version>1.0</version>
+        <version>${copy.rename.maven.plugin.version}</version>
         <executions>
           <execution>
             <id>copy-file</id>
@@ -217,7 +223,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
         <executions>
           <execution>
             <id>default-install</id>
@@ -252,7 +257,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.2</version>
+        <version>${maven.deploy.plugin.version}</version>
         <executions>
           <execution>
             <id>default-deploy</id>
@@ -288,40 +293,40 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.6</version>
-        <configuration>
-          <portNames>
-            <portName>jetty.port</portName>
-            <portName>jetty.port.stop</portName>
-          </portNames>
-        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>info.freelibrary</groupId>
+        <artifactId>freelib-utils</artifactId>
+        <version>${freelib.utils.version}</version>
         <executions>
           <execution>
-            <id>reserve-port</id>
-            <phase>initialize</phase>
+            <id>set-stop-key</id>
             <goals>
-              <goal>reserve-network-port</goal>
+              <goal>set-uuid-property</goal>
             </goals>
+            <configuration>
+              <name>jetty.stop.key</name>
+            </configuration>
           </execution>
         </executions>
       </plugin>
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.3.0.M1</version>
+        <version>${jetty.version}</version>
         <dependencies>
           <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.10</version>
+            <version>${sl4j.log4j.version}</version>
           </dependency>
         </dependencies>
         <configuration>
-          <stopPort>${jetty.port.stop}</stopPort>
-          <stopKey>${jetty.port.stop}</stopKey>
+          <stopPort>${http.port.stop}</stopPort>
+          <stopKey>${jetty.stop.key}</stopKey>
           <stopWait>10</stopWait>
           <httpConnector>
-            <port>${jetty.port}</port>
+            <port>${http.port}</port>
           </httpConnector>
           <webAppSourceDirectory>target</webAppSourceDirectory>
           <webApp>
@@ -352,7 +357,6 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-        <version>1.2.1</version>
         <executions>
           <execution>
             <id>load-xar-for-testing</id>
@@ -390,6 +394,28 @@
           </execution>
         </executions>
       </plugin>
+      <!-- Plugin to generate JavaDocs -->
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+      <!-- Plugin to run Sonar analysis -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+      </plugin>
+      <!-- Checks project's code for conformance to coding standards -->
+      <plugin>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+      <!-- Plugin to enforce some rules about the project -->
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <!-- Plugin to generate the project's website -->
+      <plugin>
+        <groupId>br.com.ingenieux</groupId>
+        <artifactId>jbake-maven-plugin</artifactId>
+      </plugin>
     </plugins>
   </build>
   <profiles>
@@ -419,44 +445,23 @@
         <script.directory>src/test/scripts</script.directory>
       </properties>
     </profile>
-    <profile>
-      <id>release-sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
   </profiles>
+
+  <!-- Enables pushing project documentation up to an S3 bucket -->
   <distributionManagement>
     <site>
       <id>s3.site</id>
       <url>s3://projects.freelibrary.info/freelib-marc4j-exist</url>
     </site>
   </distributionManagement>
+
+  <!-- Pulls in standard FreeLibrary Project configuration options -->
   <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
+    <groupId>info.freelibrary</groupId>
+    <artifactId>freelib-parent</artifactId>
+    <version>0.0.9</version>
   </parent>
+
   <repositories>
     <!-- Can't check this into Maven Central as long as we have external repositories -->
     <repository>
