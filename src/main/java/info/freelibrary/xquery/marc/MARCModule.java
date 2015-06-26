@@ -29,6 +29,11 @@ public class MARCModule extends AbstractInternalModule {
         new FunctionDef(ReadFromFile.SIGNATURES[1], ReadFromFile.class),
         new FunctionDef(WriteToFile.SIGNATURES[0], WriteToFile.class) };
 
+    /**
+     * Creates a new MARC module.
+     *
+     * @param aParamMap A map of parameters with which to initialize the <code>MARCModule</code>.
+     */
     public MARCModule(final Map<String, List<? extends Object>> aParamMap) {
         super(FUNCTIONS, aParamMap);
     }

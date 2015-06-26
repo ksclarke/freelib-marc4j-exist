@@ -32,6 +32,10 @@ public class ErrorCodes {
 
     public static ErrorCode MARC0012 = new MARCErrorCode("MARC0012", "IOException while reading the MARC record");
 
+    private ErrorCodes() {
+
+    }
+
     public static class MARCErrorCode extends ErrorCode {
 
         private MARCErrorCode(final String aCode, final String aMessage) {

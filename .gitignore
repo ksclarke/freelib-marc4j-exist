@@ -1,1 +1,11 @@
+#
+# Things to ignore... you can argue this should all be in a global gitignore
+#
+
+# Maven cruft
 target
+
+# Eclipse cruft
+.classpath
+.project
+.settings

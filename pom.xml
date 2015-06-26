@@ -21,6 +21,7 @@
     <developerConnection>scm:git:git@github.com:ksclarke/freelib-marc4j-exist.git</developerConnection>
     <url>git@github.com:ksclarke/freelib-marc4j-exist.git</url>
   </scm>
+
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/ksclarke/freelib-marc4j-exist/issues</url>
@@ -66,6 +67,7 @@
       <groupId>org.exist-db</groupId>
       <artifactId>existdb-core</artifactId>
       <version>${exist.db.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>info.freelibrary</groupId>
@@ -73,6 +75,7 @@
       <version>${freelib.marc4j.version}</version>
     </dependency>
   </dependencies>
+
   <build>
     <testResources>
       <testResource>
@@ -365,8 +368,10 @@
               <goal>exec</goal>
             </goals>
             <configuration>
-              <executable>${self.reference}load.${script.extension}</executable>
-              <workingDirectory>${script.directory}</workingDirectory>
+              <executable>bash</executable>
+              <arguments>
+                <argument>${basedir}/src/test/scripts/load.sh</argument>
+              </arguments>
               <environmentVariables>
                 <EXIST_HOME>${exist.home}</EXIST_HOME>
                 <EXIST_USERNAME>${exist.username}</EXIST_USERNAME>
@@ -382,8 +387,10 @@
               <goal>exec</goal>
             </goals>
             <configuration>
-              <executable>${self.reference}test.${script.extension}</executable>
-              <workingDirectory>${script.directory}</workingDirectory>
+              <executable>bash</executable>
+              <arguments>
+                <argument>${basedir}/src/test/scripts/test.sh</argument>
+              </arguments>
               <environmentVariables>
                 <EXIST_HOME>${exist.home}</EXIST_HOME>
                 <EXIST_USERNAME>${exist.username}</EXIST_USERNAME>
@@ -418,34 +425,6 @@
       </plugin>
     </plugins>
   </build>
-  <profiles>
-    <profile>
-      <id>Windows</id>
-      <activation>
-        <os>
-          <family>Windows</family>
-        </os>
-      </activation>
-      <properties>
-        <self.reference>.\</self.reference>
-        <script.extension>bat</script.extension>
-        <script.directory>src\test\scripts</script.directory>
-      </properties>
-    </profile>
-    <profile>
-      <id>unix</id>
-      <activation>
-        <os>
-          <family>unix</family>
-        </os>
-      </activation>
-      <properties>
-        <self.reference>./</self.reference>
-        <script.extension>sh</script.extension>
-        <script.directory>src/test/scripts</script.directory>
-      </properties>
-    </profile>
-  </profiles>
 
   <!-- Enables pushing project documentation up to an S3 bucket -->
   <distributionManagement>

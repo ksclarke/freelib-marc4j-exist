@@ -42,17 +42,19 @@ public class WriteToFile extends BasicFunction {
 
     private final static String FN_WRITE_LN = "write";
 
+    private final static SequenceType[] SEQ_TYPE_ARRAY = new SequenceType[] {
+        new FunctionParameterSequenceType("node-set", Type.NODE, Cardinality.ZERO_OR_MORE,
+                "A MARCXML node-set to write to the file system as a MARC record."),
+        new FunctionParameterSequenceType("path", Type.ITEM, Cardinality.EXACTLY_ONE,
+                "The full file system path or URI to the file to be created.") };
+
     /**
      * Defined functions for the <code>WriteToFile</code> class.
      */
     public final static FunctionSignature[] SIGNATURES = new FunctionSignature[] { new FunctionSignature(new QName(
             FN_WRITE_LN, MARCModule.NAMESPACE_URI, MARCModule.PREFIX),
             "Writes a MARCXML node-set into a MARC file on the file system. "
-                    + "This method is only available to the DBA role.", new SequenceType[] {
-                new FunctionParameterSequenceType("node-set", Type.NODE, Cardinality.ZERO_OR_MORE,
-                        "A MARCXML node-set to write to the file system as a MARC record."),
-                new FunctionParameterSequenceType("path", Type.ITEM, Cardinality.EXACTLY_ONE,
-                        "The full file system path or URI to the file to be created.") },
+                    + "This method is only available to the DBA role.", SEQ_TYPE_ARRAY,
             new FunctionReturnSequenceType(Type.BOOLEAN, Cardinality.ONE,
                     "True on success or false if the specified file can not be created or is not writable. "
                             + "An empty sequence is returned if the argument sequence is empty.")) };

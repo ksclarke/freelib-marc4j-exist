@@ -20,7 +20,7 @@ public class MARCModuleHelper {
     /**
      * Convert path (URL, file path) to a File object.
      *
-     * @param aPath A path to a MARC file written as an OS specific path or as a URL
+     * @param aFileId A path to a MARC file written as an OS specific path or as a file URL
      * @return A MARC <code>File</code> object
      * @throws XPathException If the supplied file ID cannot be used
      */
