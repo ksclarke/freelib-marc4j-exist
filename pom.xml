@@ -50,7 +50,7 @@
     <exist.db.version>2.2</exist.db.version>
 
     <freelib.utils.version>0.5.0</freelib.utils.version>
-    <freelib.marc4j.version>2.6.5</freelib.marc4j.version>
+    <freelib.marc4j.version>2.6.7</freelib.marc4j.version>
 
     <sl4j.log4j.version>1.7.10</sl4j.log4j.version>
     <maven.jar.plugin.version>2.5</maven.jar.plugin.version>
