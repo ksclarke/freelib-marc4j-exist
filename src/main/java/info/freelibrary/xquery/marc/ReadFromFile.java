@@ -60,19 +60,18 @@ public class ReadFromFile extends BasicFunction {
 
     private final static String FN_STORE_LN = "store";
 
-    public final static FunctionSignature[] SIGNATURES = new FunctionSignature[] {
-        new FunctionSignature(new QName("read", MARCModule.NAMESPACE_URI, MARCModule.PREFIX),
-                "Reads the content of a MARC file. This method is only available to the DBA role.",
-                new SequenceType[] { new FunctionParameterSequenceType("path", Type.STRING, Cardinality.EXACTLY_ONE,
+    public final static FunctionSignature[] SIGNATURES = new FunctionSignature[] { new FunctionSignature(new QName(
+            "read", MARCModule.NAMESPACE_URI, MARCModule.PREFIX),
+            "Reads the content of a MARC file. This method is only available to the DBA role.", new SequenceType[] {
+                new FunctionParameterSequenceType("path", Type.STRING, Cardinality.EXACTLY_ONE,
                         "The URI or file system location of a MARC file to read") }, new FunctionReturnSequenceType(
-                        Type.DOCUMENT, Cardinality.EXACTLY_ONE, "An in-memory MARCXML document")),
+                                Type.DOCUMENT, Cardinality.EXACTLY_ONE, "An in-memory MARCXML document")),
         new FunctionSignature(new QName("store", MARCModule.NAMESPACE_URI, MARCModule.PREFIX),
                 "Stores contents of a MARC file into a collection. This method is only available to the DBA role.",
-                new SequenceType[] {
-                    new FunctionParameterSequenceType("path", Type.STRING, Cardinality.EXACTLY_ONE,
-                            "The URI or file system location of a MARC file to read"),
-                    new FunctionParameterSequenceType("collection", Type.STRING, Cardinality.EXACTLY_ONE,
-                            "The path of the collection into which the records should be stored") },
+                new SequenceType[] { new FunctionParameterSequenceType("path", Type.STRING, Cardinality.EXACTLY_ONE,
+                        "The URI or file system location of a MARC file to read"), new FunctionParameterSequenceType(
+                                "collection", Type.STRING, Cardinality.EXACTLY_ONE,
+                                "The path of the collection into which the records should be stored") },
                 new FunctionReturnSequenceType(Type.BOOLEAN, Cardinality.EXACTLY_ONE,
                         "A boolean indicating whether all documents were stored as expected")) };
 
@@ -92,8 +91,8 @@ public class ReadFromFile extends BasicFunction {
     public Sequence eval(final Sequence[] aSequenceArray, final Sequence aContextSequence) throws XPathException {
 
         if (!context.getSubject().hasDbaRole()) {
-            throw new XPathException(this, ErrorCodes.MARC0001, ErrorCodes.MARC0001.getDescription(),
-                    new StringValue(context.getSubject().getName()));
+            throw new XPathException(this, ErrorCodes.MARC0001, ErrorCodes.MARC0001.getDescription(), new StringValue(
+                    context.getSubject().getName()));
         }
 
         if (!isCalledAs(FN_READ_LN) && !isCalledAs(FN_STORE_LN)) {
@@ -102,9 +101,9 @@ public class ReadFromFile extends BasicFunction {
 
         final String filePath = aSequenceArray[0].getStringValue();
         final File marcFile = MARCModuleHelper.getFile(filePath);
+        final MarcReader reader;
 
         InputStream inputStream = null;
-        MarcReader reader;
 
         try {
             inputStream = new FileInputStream(marcFile);
