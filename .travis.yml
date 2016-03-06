@@ -2,7 +2,6 @@ language: java
 
 # JDK 7 is end-of-life'd in April 2015
 jdk:
-  - openjdk7
   - oraclejdk8
 
 # Test everything but the docs branch
